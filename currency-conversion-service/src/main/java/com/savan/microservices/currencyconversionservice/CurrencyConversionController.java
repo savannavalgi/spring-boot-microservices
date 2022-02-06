@@ -26,7 +26,7 @@ public class CurrencyConversionController {
 		return curConv;
 	}
 	
-	@GetMapping("/currency-conversion-feigh/from/{from}/to/{to}/quantity/{quantity}")
+	@GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversionFeigh(@PathVariable("from") String from,
 			@PathVariable("to") String to,@PathVariable("quantity") BigDecimal quantity) {
 		
@@ -35,7 +35,7 @@ public class CurrencyConversionController {
 		CurrencyConversion curConv = proxy.retriveExchangeValue(from, to);
 		
 		curConv.setTotalCalculatedAmount(quantity.multiply(curConv.getConversionMultiple()));
-		curConv.setEnvironment("from feign");
+		curConv.setEnvironment(curConv.getEnvironment()+"from feign");
 //		CurrencyConversion response = new CurrencyConversion(1000L,from,to,quantity);
 //		response.setTotalCalculatedAmount(quantity.multiply(curConv.getConversionMultiple()));
 //		response.setEnvironment(curConv.getEnvironment());
